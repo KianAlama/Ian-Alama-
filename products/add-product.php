@@ -37,6 +37,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $priceErr = 'Price must be greater than 0.';
     }
 
+    else if($_FILES['product_image']['size'] > 5 * 1024 * 1024){ // this block of code checks if the image is grater than 5mb
+        $imageErr = 'Image must not exceed 5mb.';
+    }
+
     // If there are validation errors, return them as JSON
     if(!empty($codeErr) || !empty($nameErr) || !empty($categoryErr) || !empty($priceErr)){
         echo json_encode([
